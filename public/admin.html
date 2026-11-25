@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Painel administrativo · Mercado Eletrônico</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <span class="brand">Mercado <span>Eletrônico</span> <small>Admin</small></span>
+      <nav>
+        <span>Olá, <strong id="user-name"></strong></span>
+        <button id="logout" type="button" class="btn btn--ghost">Sair</button>
+      </nav>
+    </header>
+
+    <main class="container">
+      <h1>Política de Privacidade</h1>
+
+      <section class="card">
+        <h2>Notificação aos clientes</h2>
+        <div class="toggle-row">
+          <button id="notice-toggle" type="button" class="switch" role="switch" aria-checked="false"
+            aria-labelledby="notice-toggle-label"></button>
+          <span id="notice-toggle-label">Carregando...</span>
+        </div>
+      </section>
+
+      <div class="two-columns">
+        <section class="card">
+          <h2>Versão vigente <small id="current-version" class="muted"></small></h2>
+          <h3 id="current-title"></h3>
+          <div id="current-content" class="policy-text"></div>
+          <details>
+            <summary>Histórico de versões</summary>
+            <ul id="versions"></ul>
+          </details>
+        </section>
+
+        <section class="card">
+          <h2>Publicar nova versão</h2>
+          <p class="muted">Ao publicar, todos os clientes deverão aceitar novamente no próximo acesso.</p>
+          <form id="publish-form">
+            <label>
+              Título
+              <input name="title" required minlength="3" maxlength="150" />
+            </label>
+            <label>
+              Texto da notificação (separe parágrafos com uma linha em branco)
+              <textarea name="content" rows="8" required minlength="20"></textarea>
+            </label>
+            <p id="publish-feedback" role="status" hidden></p>
+            <button type="submit" class="btn btn--primary">Publicar versão</button>
+          </form>
+        </section>
+      </div>
+
+      <section class="card">
+        <h2>Clientes</h2>
+        <form id="customer-filters" class="filters">
+          <input name="search" type="search" placeholder="Buscar por nome ou e-mail" aria-label="Buscar cliente" />
+          <select name="status" aria-label="Filtrar por status do aceite">
+            <option value="">Todos</option>
+            <option value="accepted">Aceitaram a versão vigente</option>
+            <option value="pending">Pendentes</option>
+          </select>
+        </form>
+        <p id="customer-totals" class="muted"></p>
+        <div class="table-wrapper">
+          <table id="customers">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Aceite da política vigente</th>
+                <th>Última versão aceita</th>
+                <th>Data do último aceite</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/js/admin.js"></script>
+  </body>
+</html>
