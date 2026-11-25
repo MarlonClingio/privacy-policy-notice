@@ -1,8 +1,3 @@
-/**
- * Cada alteração da política gera uma nova versão imutável. O aceite é sempre
- * vinculado a uma versão específica, o que permite exigir um novo aceite
- * quando a política muda e manter o histórico para fins de auditoria (LGPD).
- */
 export interface PrivacyPolicyVersion {
   id: number;
   version: number;
@@ -33,7 +28,6 @@ export interface NewPolicyAcceptance {
 }
 
 export interface PrivacyNoticeSettings {
-  /** Liga/desliga globalmente a exibição do modal de notificação. */
   enabled: boolean;
 }
 
@@ -45,7 +39,6 @@ export interface UserConsentSummary {
   email: string;
   createdAt: string;
   status: ConsentStatus;
-  /** Última versão aceita pelo usuário (pode ser anterior à vigente). */
   lastAcceptedVersion: number | null;
   lastAcceptedAt: string | null;
 }

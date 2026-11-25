@@ -23,7 +23,6 @@ export async function createTestContext() {
       role,
     });
 
-  /** Retorna um agente HTTP com o cookie de sessão já configurado. */
   const login = async (email: string) => {
     const agent = request.agent(app);
     await agent.post('/api/auth/login').send({ email, password: PASSWORD }).expect(200);

@@ -8,12 +8,6 @@ import type {
   UserConsentSummary,
 } from '../domain/privacy-policy.js';
 
-/*
- * Contratos de persistência. Os serviços dependem apenas destas interfaces,
- * então trocar SQLite por MySQL/PostgreSQL (ou um mock nos testes) não exige
- * alterações na regra de negócio.
- */
-
 export interface UserRepository {
   create(user: NewUser): User;
   findById(id: number): User | null;

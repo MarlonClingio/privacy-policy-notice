@@ -11,8 +11,6 @@ export class SqlitePrivacyNoticeSettingsRepository implements PrivacyNoticeSetti
     const row = this.db.prepare('SELECT value FROM settings WHERE key = ?').get(ENABLED_KEY) as
       | { value: string }
       | undefined;
-
-    // Sem configuração explícita, a notificação fica ativa (comportamento mais seguro para LGPD).
     return { enabled: row ? row.value === '1' : true };
   }
 

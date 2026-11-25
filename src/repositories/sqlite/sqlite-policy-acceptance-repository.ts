@@ -42,7 +42,6 @@ export class SqlitePolicyAcceptanceRepository implements PolicyAcceptanceReposit
     return row ? toAcceptance(row) : null;
   }
 
-  /** Idempotente: um segundo aceite da mesma versão mantém o registro original. */
   create(acceptance: NewPolicyAcceptance): PolicyAcceptance {
     this.db
       .prepare(

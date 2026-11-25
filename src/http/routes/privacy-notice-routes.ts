@@ -8,7 +8,6 @@ const acceptSchema = z.object({
   version: z.number().int().positive(),
 });
 
-/** Rotas consumidas pela área do cliente (o modal). Exigem usuário autenticado. */
 export function privacyNoticeRoutes(service: PrivacyNoticeService): Router {
   const router = Router();
 

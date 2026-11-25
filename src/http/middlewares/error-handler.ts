@@ -13,7 +13,6 @@ export function errorHandler(error: unknown, _req: Request, res: Response, _next
     return;
   }
 
-  // JSON malformado no corpo da requisição.
   if (error instanceof SyntaxError && 'status' in error && error.status === 400) {
     res.status(400).json({ error: { code: 'INVALID_JSON', message: 'Corpo da requisição não é um JSON válido.' } });
     return;

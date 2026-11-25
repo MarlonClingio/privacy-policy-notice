@@ -25,7 +25,6 @@ export interface CustomerConsentReport {
   items: UserConsentSummary[];
 }
 
-/** Operações do painel administrativo. */
 export class PrivacyPolicyAdminService {
   constructor(
     private readonly policies: PrivacyPolicyRepository,
@@ -45,7 +44,6 @@ export class PrivacyPolicyAdminService {
     return saved;
   }
 
-  /** Publicar uma nova versão faz com que todos os clientes precisem aceitar novamente. */
   publishVersion(input: NewPrivacyPolicyVersion, actor: User): PrivacyPolicyVersion {
     const policy = this.policies.publish(input);
     this.events.emit('privacy-policy.published', { policy, actorId: actor.id });

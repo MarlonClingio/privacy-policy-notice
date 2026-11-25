@@ -5,6 +5,3 @@ data/
 *.db-journal
 .env
 coverage/
-
-# Enunciado do teste (documento da empresa)
-*.pdf

@@ -18,7 +18,6 @@ const customersQuerySchema = z.object({
   search: z.string().trim().max(100).optional(),
 });
 
-/** Rotas do painel administrativo. Exigem usuário autenticado com papel `admin`. */
 export function adminRoutes(service: PrivacyPolicyAdminService): Router {
   const router = Router();
 

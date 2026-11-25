@@ -12,10 +12,6 @@ import { PrivacyNoticeService } from './services/privacy-notice-service.js';
 import { PrivacyPolicyAdminService } from './services/privacy-policy-admin-service.js';
 import { InMemorySessionStore } from './services/session-store.js';
 
-/**
- * Composition root: o único lugar que conhece as implementações concretas.
- * Para trocar uma peça (ex.: banco, sessão) basta alterar a linha correspondente.
- */
 export function buildContainer(config: Pick<AppConfig, 'databasePath' | 'sessionTtlMinutes'>) {
   const db: DatabaseSync = openDatabase(config.databasePath);
   const events = new EventBus();

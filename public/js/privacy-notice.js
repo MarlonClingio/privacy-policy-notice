@@ -1,14 +1,5 @@
 import { api, ApiError, formatDate, renderParagraphs } from './api.js';
 
-/**
- * Módulo de notificação da Política de Privacidade.
- *
- * Uso: `await initPrivacyNotice()` em qualquer página autenticada. O módulo
- * consulta o backend e, se o usuário ainda não aceitou a versão vigente,
- * exibe um modal bloqueante com o texto e o botão de confirmação.
- *
- * Retorna uma Promise resolvida quando não há pendência ou após o aceite.
- */
 export async function initPrivacyNotice({ onAccepted } = {}) {
   const notice = await api('/privacy-notice');
   if (!notice.required) return { shown: false };
@@ -39,7 +30,6 @@ function showModal(policy) {
       resolve(acceptance);
     };
 
-    // Modal obrigatório: Esc não fecha e o foco fica preso dentro dele.
     const trapKeys = (event) => {
       if (event.key === 'Escape') event.preventDefault();
       if (event.key === 'Tab') {
@@ -60,7 +50,6 @@ function showModal(policy) {
         });
         close(acceptance);
       } catch (err) {
-        // A política mudou enquanto o modal estava aberto: mostra o texto novo.
         if (err instanceof ApiError && err.status === 409) {
           const latest = await api('/privacy-notice');
           if (!latest.required) return close(null);

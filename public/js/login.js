@@ -3,7 +3,6 @@ import { api, ApiError } from './api.js';
 const form = document.querySelector('#login-form');
 const error = document.querySelector('#login-error');
 
-// Já autenticado? Vai direto para a área correspondente.
 api('/auth/me')
   .then(({ home }) => window.location.replace(home))
   .catch(() => {});

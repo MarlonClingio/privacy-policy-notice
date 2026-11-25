@@ -11,10 +11,6 @@ export interface SessionStore {
   destroy(token: string): void;
 }
 
-/**
- * Implementação em memória, suficiente para o escopo do teste. Em produção
- * pode ser substituída por Redis/banco sem alterar o restante da aplicação.
- */
 export class InMemorySessionStore implements SessionStore {
   private readonly sessions = new Map<string, Session>();
 

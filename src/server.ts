@@ -6,7 +6,6 @@ import { seedDemoData } from './seed.js';
 try {
   process.loadEnvFile();
 } catch {
-  // .env é opcional; os valores padrão de loadConfig são usados.
 }
 
 const config = loadConfig();
@@ -16,7 +15,6 @@ if (config.seedDemoData) {
   await seedDemoData(container);
 }
 
-// Exemplo de extensão via eventos: trilha de auditoria simples no log.
 container.events.on('privacy-policy.accepted', ({ acceptance }) =>
   console.log(`[audit] usuário ${acceptance.userId} aceitou a política v${acceptance.policyVersion}`),
 );

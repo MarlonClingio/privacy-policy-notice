@@ -2,10 +2,6 @@ import { mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 
-/**
- * Migrações versionadas e aplicadas em ordem. Para evoluir o schema basta
- * adicionar um novo item ao final do array (nunca editar um já aplicado).
- */
 const MIGRATIONS: readonly string[] = [
   `
   CREATE TABLE users (

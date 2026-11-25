@@ -1,4 +1,3 @@
-/** Cliente HTTP mínimo para a API. Lança `ApiError` em respostas não-2xx. */
 export class ApiError extends Error {
   constructor(status, code, message, details) {
     super(message);
@@ -26,7 +25,6 @@ export async function api(path, { method = 'GET', body } = {}) {
   return data;
 }
 
-/** Garante sessão válida (e papel, se informado); caso contrário volta ao login. */
 export async function requireSession(role) {
   try {
     const { user, home } = await api('/auth/me');
@@ -50,7 +48,6 @@ export function formatDate(iso) {
   return iso ? new Date(iso).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' }) : '—';
 }
 
-/** Renderiza texto puro em parágrafos, sem interpretar HTML (evita XSS). */
 export function renderParagraphs(container, text) {
   container.replaceChildren(
     ...text

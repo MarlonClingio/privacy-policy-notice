@@ -1,9 +1,5 @@
 import type { PolicyAcceptance, PrivacyNoticeSettings, PrivacyPolicyVersion } from '../domain/privacy-policy.js';
 
-/**
- * Catálogo de eventos de domínio. Novas integrações (e-mail, auditoria,
- * webhooks, CRM...) podem reagir a esses eventos sem alterar os serviços.
- */
 export interface DomainEvents {
   'privacy-policy.published': { policy: PrivacyPolicyVersion; actorId: number };
   'privacy-policy.accepted': { acceptance: PolicyAcceptance };
@@ -25,7 +21,6 @@ export class EventBus {
 
   emit<K extends keyof DomainEvents>(event: K, payload: DomainEvents[K]): void {
     for (const listener of this.listeners[event] ?? []) {
-      // Uma falha em um listener não deve desfazer a operação principal.
       try {
         listener(payload);
       } catch (error) {

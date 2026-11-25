@@ -15,7 +15,6 @@ export interface AcceptanceContext {
   userAgent: string | null;
 }
 
-/** Regras do lado do cliente: decidir se o modal aparece e registrar o aceite. */
 export class PrivacyNoticeService {
   constructor(
     private readonly policies: PrivacyPolicyRepository,
@@ -37,10 +36,6 @@ export class PrivacyNoticeService {
     return { required: true, policy };
   }
 
-  /**
-   * O cliente informa a versão que leu. Se a política mudou enquanto o modal
-   * estava aberto, o aceite é recusado para que ele leia o texto atualizado.
-   */
   accept(user: User, version: number, context: AcceptanceContext): PolicyAcceptance {
     const current = this.policies.findCurrent();
     if (!current) {

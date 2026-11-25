@@ -11,7 +11,6 @@ const INITIAL_POLICY = {
   ].join('\n\n'),
 };
 
-/** Popula dados de demonstração apenas em um banco vazio (idempotente). */
 export async function seedDemoData({ repositories, hasher }: Container): Promise<void> {
   if (repositories.users.count() > 0) return;
 
@@ -26,7 +25,6 @@ export async function seedDemoData({ repositories, hasher }: Container): Promise
 
   const policy = repositories.policies.publish(INITIAL_POLICY);
 
-  // Carla já aceitou a v1, para que a grid do admin mostre os dois estados.
   const carla = created.find((user) => user.email === 'carla@exemplo.com');
   if (carla) {
     repositories.acceptances.create({ userId: carla.id, policyVersion: policy.version, ipAddress: null, userAgent: 'seed' });

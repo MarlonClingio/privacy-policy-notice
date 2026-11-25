@@ -34,7 +34,6 @@ export function requireRole(role: UserRole) {
   };
 }
 
-/** Uso em handlers já protegidos por `authenticate`. */
 export function currentUser(req: Request): User {
   if (!req.user) throw new UnauthorizedError('Usuário não autenticado.');
   return req.user;

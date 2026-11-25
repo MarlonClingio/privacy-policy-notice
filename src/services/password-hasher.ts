@@ -4,7 +4,6 @@ import { promisify } from 'node:util';
 const scrypt = promisify(scryptCallback) as (password: string, salt: string, keylen: number) => Promise<Buffer>;
 const KEY_LENGTH = 64;
 
-/** Hash no formato `salt:hash` (hex) usando scrypt, nativo do Node. */
 export class PasswordHasher {
   async hash(password: string): Promise<string> {
     const salt = randomBytes(16).toString('hex');
