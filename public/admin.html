@@ -29,7 +29,7 @@
 
       <div class="two-columns">
         <section class="card">
-          <h2>Versão vigente <small id="current-version" class="muted"></small></h2>
+          <h2>Versão vigente: <small id="current-version" class="muted"></small></h2>
           <h3 id="current-title"></h3>
           <div id="current-content" class="policy-text"></div>
           <details>
@@ -40,14 +40,14 @@
 
         <section class="card">
           <h2>Publicar nova versão</h2>
-          <p class="muted">Ao publicar, todos os clientes deverão aceitar novamente no próximo acesso.</p>
+          <p class="muted">Ao publicar, todos os clientes deverão aceitar novamente a política de privacidade no próximo acesso.</p>
           <form id="publish-form">
             <label>
               Título
               <input name="title" required minlength="3" maxlength="150" />
             </label>
             <label>
-              Texto da notificação (separe parágrafos com uma linha em branco)
+              Texto descritivo da notificação de política de privacidade
               <textarea name="content" rows="8" required minlength="20"></textarea>
             </label>
             <p id="publish-feedback" role="status" hidden></p>

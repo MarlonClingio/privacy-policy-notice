@@ -1,7 +1,5 @@
 # Notificação de Política de Privacidade — Mercado Eletrônico
 
-Solução para o **Teste Técnico p/ Desenvolvedor do Time Mercado Eletrônico (SouEnergy)**.
-
 Após o login, se o cliente ainda não aceitou a **versão vigente** da Política de Privacidade, é exibido um
 modal com o texto da política e um botão de confirmação. O aceite é persistido (vinculado à versão), então
 o modal não aparece novamente — até que uma nova versão seja publicada. No painel administrativo é possível
@@ -20,7 +18,7 @@ ativar/desativar a notificação, publicar novas versões do texto e ver, na gri
 
 ## Sumário
 
-1. [Requisitos atendidos](#1-requisitos-atendidos)
+1. [Requisitos](#1-requisitos-atendidos)
 2. [Concepção e implementação](#2-concepção-e-implementação)
 3. [Instalação e configuração](#3-instalação-e-configuração)
 4. [Testes](#4-testes)
@@ -33,7 +31,7 @@ ativar/desativar a notificação, publicar novas versões do texto e ver, na gri
 
 ## 1. Requisitos atendidos
 
-| Requisito do teste | Onde está |
+| Requisito | Onde está |
 | --- | --- |
 | Modal exibido após o login se o usuário não aceitou a versão vigente | [`public/js/privacy-notice.js`](public/js/privacy-notice.js) + `GET /api/privacy-notice` |
 | **1a.** Botão para ativar/desativar a exibição da notificação | Switch no painel admin ([`public/admin.html`](public/admin.html)) → `PATCH /api/admin/privacy-policy/settings` |
@@ -150,7 +148,7 @@ pasta `data/`.
 
 ### Usuários de demonstração
 
-Todos com a senha **`senha123`** (também há botões de atalho na tela de login):
+Todos com a senha **`senha123`**:
 
 | Usuário | Papel | Situação inicial |
 | --- | --- | --- |
@@ -358,9 +356,9 @@ A estrutura foi pensada para que novas funcionalidades entrem **sem modificar** 
 
 ---
 
-## 8. Decisões, limitações e próximos passos
+## 8. Decisões, limitações ou próximos passos
 
-**Por que Node.js e não Magento?** O enunciado permite qualquer stack. Optei por uma solução que roda com um único
+**Node.js**
 `npm install`, sem Docker ou banco externo, para que o avaliador consiga executar e testar em minutos. A modelagem
 (versões + aceites + configuração + eventos) se traduz diretamente para um módulo Magento 2: as tabelas viram
 `db_schema.xml`, o toggle e o texto viram `system.xml`/admin form, o modal vira um componente `Magento_Ui/js/modal`
@@ -372,12 +370,4 @@ domínio viram `events.xml`/observers.
   `ExperimentalWarning` ao usá-lo; ele é suprimido no `npm start`.
 - Sessão em memória: simples e suficiente para o escopo; reiniciar o servidor exige novo login (os aceites
   continuam salvos no banco).
-- Frontend sem framework: o foco do teste é o fluxo e o modal; evita build e mantém o projeto enxuto.
-
-**Próximos passos sugeridos**
-- Paginação server-side na grid (hoje o volume é pequeno).
-- Proteção CSRF por token (hoje mitigada por `SameSite=Lax` + `Content-Type: application/json`) e rate-limit no login.
-- CRUD de usuários e cadastro de clientes.
-- Exportação CSV dos aceites e trilha de auditoria persistida.
-- Internacionalização dos textos.
-- Testes E2E de interface (Playwright).
+- Frontend sem framework: o foco é o fluxo e o modal; evita build e mantém o projeto enxuto.

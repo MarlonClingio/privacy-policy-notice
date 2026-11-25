@@ -16,8 +16,8 @@ const versionsList = document.querySelector('#versions');
 function renderToggle(enabled) {
   toggle.setAttribute('aria-checked', String(enabled));
   toggleLabel.textContent = enabled
-    ? 'Notificação ATIVA — clientes com aceite pendente verão o modal após o login.'
-    : 'Notificação DESATIVADA — o modal não será exibido.';
+    ? 'Notificação ATIVA'
+    : 'Notificação DESATIVADA';
 }
 
 async function loadPolicy() {
